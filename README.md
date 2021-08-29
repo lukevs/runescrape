@@ -1,2 +1,4 @@
 # runescrape
-scrape runescape wiki for images
+scrape runescape gear wiki
+
+more soon 👀
