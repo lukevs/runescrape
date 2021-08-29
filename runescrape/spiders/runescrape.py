@@ -12,7 +12,7 @@ class RunscrapeSpider(scrapy.Spider):
     start_urls = [f"https://oldschool.runescape.wiki/w/Head_slot_table"]
 
     def parse(self, response):
-        article_links = response.css(".wikitable tr td a")[:3]
+        article_links = response.css(".wikitable tr td a")
         yield from response.follow_all(article_links, callback=self.parse_article)
 
     def parse_article(self, response):
