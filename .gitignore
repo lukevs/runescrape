@@ -130,5 +130,6 @@ dmypy.json
 
 *.swp
 
-# image downloads
+# scrape output
 images/
+items.csv

@@ -1,10 +1,16 @@
+from enum import Enum
 from typing import List
 
 from pydantic import BaseModel, validator
 
 
+class RunscrapeItemType(Enum):
+    HEAD = "head"
+
+
 class RunescrapeItem(BaseModel):
     title: str
+    item_type: RunscrapeItemType
     icon_source_url: str
 
     # for scrapy - image_urls are fetched and loaded into images field
