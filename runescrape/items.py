@@ -6,6 +6,12 @@ from pydantic import BaseModel, validator
 
 class RunscrapeItemType(Enum):
     HEAD = "head"
+    NECK = "neck"
+    WEAPON = "weapon"
+    BODY = "body"
+    LEGS = "legs"
+    FEET = "feet"
+    RING = "ring"
 
 
 class RunescrapeItem(BaseModel):

@@ -7,7 +7,13 @@ WIKI_DOMAIN = "oldschool.runescape.wiki"
 
 ITEM_TYPE_META = "item_type"
 TABLE_URLS_BY_ITEM_TYPE = {
-    RunscrapeItemType.HEAD: "https://oldschool.runescape.wiki/w/Head_slot_table"
+    RunscrapeItemType.HEAD: "https://oldschool.runescape.wiki/w/Head_slot_table",
+    RunscrapeItemType.NECK: "https://oldschool.runescape.wiki/w/Neck_slot_table",
+    RunscrapeItemType.WEAPON: "https://oldschool.runescape.wiki/w/Weapon_slot_table",
+    RunscrapeItemType.BODY: "https://oldschool.runescape.wiki/w/Body_slot_table",
+    RunscrapeItemType.LEGS: "https://oldschool.runescape.wiki/w/Legs_slot_table",
+    RunscrapeItemType.FEET: "https://oldschool.runescape.wiki/w/Feet_slot_table",
+    RunscrapeItemType.RING: "https://oldschool.runescape.wiki/w/Ring_slot_table",
 }
 
 
@@ -23,7 +29,7 @@ class RunscrapeSpider(scrapy.Spider):
         ]
 
     def parse(self, response):
-        article_links = response.css(".wikitable tr td a")[:3]
+        article_links = response.css(".wikitable tr td a")
         yield from response.follow_all(
             article_links,
             callback=self.parse_article,
