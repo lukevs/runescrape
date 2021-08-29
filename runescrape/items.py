@@ -1,12 +1,22 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
+from typing import List
 
-import scrapy
+from pydantic import BaseModel, validator
 
 
-class RunescrapeItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class RunescrapeItem(BaseModel):
+    title: str
+    icon_source_url: str
+
+    # for scrapy - image_urls are fetched and loaded into images field
+    image_urls: List[str] = []
+    images: List[dict] = []
+
+    @validator("image_urls", pre=True, always=True)
+    def populate_image_urls(cls, v, values):
+        return [values["icon_source_url"]]
+
+    def get_icon_path(self):
+        if len(self.images) == 0:
+            raise RuntimeError("Images is not yet populated")
+
+        return self.images[0]["path"]

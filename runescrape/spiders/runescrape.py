@@ -1,19 +1,9 @@
-from typing import List
-
 import scrapy
-from pydantic import BaseModel
+
+from runescrape.items import RunescrapeItem
 
 
 WIKI_DOMAIN = "oldschool.runescape.wiki"
-
-
-class RunscapeItem(BaseModel):
-    title: str
-    icon_source_url: str
-
-    # for scrapy - image_urls are fetched and loaded into images field
-    image_urls: List[str]
-    images: List[dict]
 
 
 class RunscrapeSpider(scrapy.Spider):
@@ -30,9 +20,7 @@ class RunscrapeSpider(scrapy.Spider):
         icon_source_path = response.css(".infobox-image img")[-1].attrib["src"]
         icon_source_url = f"https://{WIKI_DOMAIN}{icon_source_path}"
 
-        yield RunscapeItem(
+        yield RunescrapeItem(
             title=title,
             icon_source_url=icon_source_url,
-            image_urls=[icon_source_url],
-            images=[],
         )
