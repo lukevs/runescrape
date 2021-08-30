@@ -14,6 +14,7 @@ TABLE_URLS_BY_ITEM_TYPE = {
     RunscrapeItemType.LEGS: "https://oldschool.runescape.wiki/w/Legs_slot_table",
     RunscrapeItemType.FEET: "https://oldschool.runescape.wiki/w/Feet_slot_table",
     RunscrapeItemType.RING: "https://oldschool.runescape.wiki/w/Ring_slot_table",
+    "https://oldschool.runescape.wiki/w/Worn_Equipment#Hands_slot "
 }
 
 

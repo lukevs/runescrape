@@ -9,9 +9,9 @@ class RunscrapeItemType(Enum):
     NECK = "neck"
     WEAPON = "weapon"
     BODY = "body"
-    LEGS = "legs"
     FEET = "feet"
     RING = "ring"
+    HANDS = "hands"
 
 
 class RunescrapeItem(BaseModel):
