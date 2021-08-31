@@ -6,7 +6,7 @@ from runescrape.items import RunescrapeItem
 
 
 EXPORT_FILEPATH = "items.csv"
-EXPORT_FIELDNAMES = ["title", "item_type", "icon_filepath"]
+EXPORT_FIELDNAMES = ["title", "item_type", "icon_filepath", "full_image_filepath"]
 
 
 class RunescrapeExportPipeline:
@@ -20,8 +20,11 @@ class RunescrapeExportPipeline:
 
     def process_item(self, item: RunescrapeItem, spider):
         icon_filepath = Path(IMAGES_STORE) / item.get_icon_path()
+        full_image_filepath = Path(IMAGES_STORE) / item.get_full_image_path()
+
         self.csv_writer.writerow(dict(
             title=item.title,
             item_type=item.item_type.value,
             icon_filepath=icon_filepath,
+            full_image_filepath=full_image_filepath,
         ))

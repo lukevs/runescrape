@@ -18,6 +18,7 @@ class RunescrapeItem(BaseModel):
     title: str
     item_type: RunscrapeItemType
     icon_source_url: str
+    full_image_source_url: str
 
     # for scrapy - image_urls are fetched and loaded into images field
     image_urls: List[str] = []
@@ -25,10 +26,19 @@ class RunescrapeItem(BaseModel):
 
     @validator("image_urls", pre=True, always=True)
     def populate_image_urls(cls, v, values):
-        return [values["icon_source_url"]]
+        return [
+            values["icon_source_url"],
+            values["full_image_source_url"],
+        ]
 
     def get_icon_path(self):
-        if len(self.images) == 0:
+        if len(self.images) < 2:
             raise RuntimeError("Images is not yet populated")
 
         return self.images[0]["path"]
+
+    def get_full_image_path(self):
+        if len(self.images) < 2:
+            raise RuntimeError("Images is not yet populated")
+
+        return self.images[1]["path"]
