@@ -29,7 +29,7 @@ class RunscrapeSpider(scrapy.Spider):
         ]
 
     def parse(self, response):
-        article_links = response.css(".wikitable tr td a")[:3]
+        article_links = response.css(".wikitable tr td a")
         yield from response.follow_all(
             article_links,
             callback=self.parse_article,
