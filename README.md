@@ -12,5 +12,5 @@ poetry install
 # scrape
 
 ```
-poetry run scrapy crawl runescrape                          11:03:23
+poetry run scrapy crawl runescrape
 ```
